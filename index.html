@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alexis Faustino — Virtual Admin & Recruitment Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream: #FBF6ED;
+    --cream-2: #F5EEE0;
+    --purple-700: #5B3E8F;
+    --purple-500: #8E6BC8;
+    --purple-400: #A98AD9;
+    --purple-300: #C9B4EA;
+    --purple-100: #EFE6FB;
+    --ink: #2E2240;
+    --ink-soft: #5B4E70;
+    --blush: #F6C9D6;
+    --peach: #FFD8AC;
+    --mint: #C7ECE1;
+    --sky: #CFE7F5;
+    --paper: #FFFDF8;
+    --line: rgba(46,34,64,0.14);
+    --shadow: 0 18px 40px -18px rgba(91,62,143,0.35);
+    --shadow-sm: 0 8px 20px -10px rgba(91,62,143,0.28);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--cream);
+    color:var(--ink);
+    font-family:'Plus Jakarta Sans', sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  .bg-dots{
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background-image: radial-gradient(circle, rgba(142,107,200,0.16) 1.6px, transparent 1.6px);
+    background-size: 26px 26px;
+  }
+
+  a{color:inherit;}
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--purple-700);
+    font-weight:700;
+  }
+  h1,h2,h3{font-family:'Fraunces', serif; margin:0; color:var(--ink); font-weight:600;}
+  p{line-height:1.65; color:var(--ink-soft);}
+
+  .wrap{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* ---------- NAV ---------- */
+  .nav-outer{
+    position:sticky; top:0; z-index:50;
+    display:flex; justify-content:center;
+    padding-top:18px;
+  }
+  .nav{
+    display:flex; align-items:center; gap:4px;
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:100px;
+    padding:8px;
+    box-shadow: var(--shadow-sm);
+  }
+  .nav .brand{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:1.05rem;
+    color:var(--purple-700);
+    padding:0 14px 0 10px;
+    white-space:nowrap;
+  }
+  .nav a.tab{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.04em;
+    text-decoration:none;
+    color:var(--ink-soft);
+    padding:9px 16px;
+    border-radius:100px;
+    transition: all .25s ease;
+    white-space:nowrap;
+  }
+  .nav a.tab:hover{ background:var(--purple-100); color:var(--purple-700); }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:76px 0 40px;
+    position:relative;
+  }
+  .hero-grid{
+    display:grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap:52px;
+    align-items:center;
+  }
+  .pin{
+    position:absolute;
+    width:20px;height:20px;border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #fff, var(--purple-500) 60%, var(--purple-700) 100%);
+    box-shadow:0 3px 6px rgba(0,0,0,0.25);
+    top:-10px; left:50%;
+    transform:translateX(-50%);
+    z-index:3;
+  }
+  .hero-card{
+    position:relative;
+    background:var(--paper);
+    border-radius:22px;
+    padding:46px 44px 40px;
+    box-shadow: var(--shadow);
+    transform: rotate(-1.1deg);
+    border:1px solid var(--line);
+  }
+  .tape{
+    position:absolute;
+    width:74px; height:26px;
+    background: rgba(201,180,234,0.55);
+    border:1px solid rgba(255,255,255,0.5);
+    box-shadow:0 2px 6px rgba(0,0,0,0.08);
+  }
+  .tape.tl{ top:-14px; left:34px; transform:rotate(-8deg);}
+  .tape.br{ bottom:-14px; right:44px; transform:rotate(6deg);}
+
+  .hero-card h1{
+    font-size:3.4rem;
+    line-height:1.04;
+    letter-spacing:-0.01em;
+    margin:14px 0 6px;
+  }
+  .hero-card h1 em{
+    font-style:italic;
+    color:var(--purple-600, var(--purple-500));
+    background: linear-gradient(180deg, transparent 62%, var(--purple-300) 62%);
+  }
+  .role-line{
+    font-family:'Space Mono', monospace;
+    font-size:0.95rem;
+    color:var(--purple-700);
+    margin:6px 0 20px;
+  }
+  .hero-card p.lede{ font-size:1.05rem; max-width:46ch; }
+
+  .chip-row{ display:flex; flex-wrap:wrap; gap:10px; margin:24px 0 30px; }
+  .chip{
+    font-family:'Space Mono', monospace;
+    font-size:0.72rem;
+    letter-spacing:0.02em;
+    padding:8px 14px;
+    border-radius:100px;
+    border:1px solid var(--line);
+    background:var(--purple-100);
+    color:var(--purple-700);
+  }
+  .chip.peach{ background:var(--peach); color:#7A4A16; border-color:transparent;}
+  .chip.blush{ background:var(--blush); color:#8A3454; border-color:transparent;}
+  .chip.mint{ background:var(--mint); color:#1F6E58; border-color:transparent;}
+
+  .btn-row{ display:flex; gap:14px; flex-wrap:wrap; }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:13px 24px;
+    border-radius:100px;
+    font-weight:700;
+    font-size:0.92rem;
+    text-decoration:none;
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .btn.primary{ background:var(--purple-500); color:#fff; box-shadow:var(--shadow-sm);}
+  .btn.primary:hover{ transform:translateY(-2px); box-shadow:var(--shadow);}
+  .btn.ghost{ background:transparent; border:1.6px solid var(--purple-500); color:var(--purple-700);}
+  .btn.ghost:hover{ background:var(--purple-100); }
+
+  .hero-visual{
+    position:relative;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .polaroid{
+    background:#fff;
+    padding:14px 14px 46px;
+    border-radius:10px;
+    box-shadow: var(--shadow);
+    width:280px;
+    transform:rotate(4deg);
+    position:relative;
+    z-index:2;
+  }
+  .polaroid img{ width:100%; display:block; border-radius:4px; }
+  .polaroid figcaption{
+    font-family:'Space Mono', monospace;
+    font-size:0.68rem;
+    color:var(--ink-soft);
+    text-align:center;
+    position:absolute; bottom:14px; left:0; right:0;
+  }
+  .sticky-behind{
+    position:absolute;
+    width:230px; height:230px;
+    background:var(--peach);
+    border-radius:14px;
+    top:26px; right:14px;
+    transform:rotate(-9deg);
+    box-shadow: var(--shadow-sm);
+    z-index:1;
+  }
+  .sticky-behind.two{
+    background:var(--mint);
+    right:auto; left:6px; top:auto; bottom:10px;
+    transform:rotate(10deg);
+    width:190px; height:190px;
+  }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:96px 0; position:relative; }
+  .section-head{ max-width:640px; margin-bottom:48px; }
+  .section-head h2{ font-size:2.3rem; margin-top:10px; }
+  .section-head .eyebrow{ display:flex; align-items:center; gap:10px; }
+  .section-head .eyebrow::before{
+    content:''; width:26px; height:2px; background:var(--purple-500); display:inline-block;
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about-grid{
+    display:grid; grid-template-columns: 0.85fr 1.15fr; gap:40px; align-items:stretch;
+  }
+  .about-card-photo{
+    background:var(--purple-100);
+    border-radius:24px;
+    padding:28px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    border:1px solid var(--line);
+  }
+  .avatar-ring{
+    width:150px;height:150px;border-radius:50%;
+    background: conic-gradient(from 200deg, var(--purple-500), var(--blush), var(--peach), var(--mint), var(--purple-500));
+    display:flex; align-items:center; justify-content:center;
+    padding:6px;
+    margin-bottom:20px;
+  }
+  .avatar-ring .init{
+    width:100%;height:100%;border-radius:50%;
+    background:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fraunces', serif; font-style:italic; font-size:2.6rem; color:var(--purple-700);
+    overflow:hidden;
+  }
+  .avatar-ring .init img{
+    width:100%; height:100%; object-fit:cover; border-radius:50%; display:block;
+  }
+  .about-card-photo .name{ font-family:'Fraunces', serif; font-size:1.5rem; font-weight:600;}
+  .about-card-photo .role{
+    font-family:'Space Mono', monospace; font-size:0.78rem; color:var(--purple-700); margin-top:4px;
+  }
+  .pronoun{ font-size:0.85rem; color:var(--ink-soft); margin-top:2px;}
+  .social-row{ display:flex; gap:10px; margin-top:20px; }
+  .social-row a{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--paper); border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.9rem; text-decoration:none; color:var(--purple-700);
+    transition:.2s ease;
+  }
+  .social-row a:hover{ background:var(--purple-500); color:#fff; }
+
+  .about-card-bio{
+    background:var(--sky);
+    border-radius:24px;
+    padding:40px 42px;
+    border:1px solid var(--line);
+  }
+  .about-card-bio h3{ font-size:1.5rem; margin-bottom:16px; }
+  .about-card-bio p + p{ margin-top:14px; }
+
+  /* ---------- SKILLS ---------- */
+  .skills-board{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:26px;
+    padding:44px;
+    box-shadow:var(--shadow-sm);
+  }
+  .skill-cols{ display:grid; grid-template-columns:1fr 1fr; gap:16px 24px; }
+  .skill-tag{
+    display:flex; align-items:center; gap:10px;
+    padding:13px 16px;
+    border-radius:14px;
+    background:var(--cream-2);
+    font-size:0.92rem;
+    font-weight:600;
+    color:var(--ink);
+  }
+  .skill-tag .dot{ width:8px;height:8px;border-radius:50%; background:var(--purple-500); flex:none;}
+  .skill-tag:nth-child(4n+2) .dot{ background:var(--blush); }
+  .skill-tag:nth-child(4n+3) .dot{ background:var(--peach); }
+  .skill-tag:nth-child(4n+4) .dot{ background:var(--mint); }
+
+  /* ---------- WORK EXPERIENCE ---------- */
+  .work-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:28px;
+  }
+  .work-card{
+    position:relative;
+    background:var(--paper);
+    border-radius:18px;
+    padding:32px 30px 28px;
+    border:1px solid var(--line);
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .work-card:hover{ transform:translateY(-6px) rotate(0deg) !important; box-shadow:var(--shadow); }
+  .work-card:nth-child(1){ transform:rotate(-1.2deg); border-top:6px solid var(--purple-400);}
+  .work-card:nth-child(2){ transform:rotate(0.8deg); border-top:6px solid var(--blush);}
+  .work-card:nth-child(3){ transform:rotate(0.6deg); border-top:6px solid var(--peach);}
+  .work-card:nth-child(4){ transform:rotate(-0.8deg); border-top:6px solid var(--mint);}
+  .work-card h3{ font-size:1.22rem; margin-bottom:10px; }
+  .work-card p{ font-size:0.95rem; }
+  .pushpin{
+    position:absolute; top:-9px; left:50%; transform:translateX(-50%);
+    width:16px;height:16px;border-radius:50%;
+    background: radial-gradient(circle at 35% 30%, #fff, var(--purple-500) 65%, var(--purple-700));
+    box-shadow:0 2px 4px rgba(0,0,0,0.3);
+  }
+
+  /* ---------- PROJECTS ---------- */
+  .proj-lead{ margin-bottom:36px; }
+  .proj-block-title{
+    font-family:'Space Mono', monospace;
+    font-size:0.78rem; letter-spacing:0.06em;
+    color:var(--purple-700); text-transform:uppercase;
+    margin: 0 0 18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .proj-block-title::after{ content:''; flex:1; height:1px; background:var(--line); }
+
+  .gallery{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:22px; margin-bottom:52px;
+  }
+  .gallery.three{ grid-template-columns:repeat(3,1fr); }
+  .g-card{
+    background:#fff;
+    padding:10px 10px 34px;
+    border-radius:8px;
+    box-shadow: var(--shadow-sm);
+    transition: transform .3s ease, box-shadow .3s ease;
+    position:relative;
+  }
+  .g-card:nth-child(odd){ transform:rotate(-2.4deg); }
+  .g-card:nth-child(even){ transform:rotate(2deg); }
+  .g-card:hover{ transform:rotate(0) translateY(-6px) scale(1.02); box-shadow:var(--shadow); z-index:5;}
+  .g-card img{
+    width:100%; height:150px; object-fit:contain; border-radius:3px; display:block;
+    background:var(--purple-100);
+    padding:6px;
+  }
+  .g-card figcaption{
+    font-family:'Space Mono', monospace;
+    font-size:0.66rem; color:var(--ink-soft);
+    text-align:center; margin-top:10px; padding:0 4px;
+  }
+  .g-card .mini-tape{
+    position:absolute; top:-8px; left:50%; transform:translateX(-50%) rotate(-3deg);
+    width:46px; height:16px; background:rgba(201,180,234,0.6);
+  }
+
+  .project-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:26px 28px;
+    box-shadow:var(--shadow-sm);
+    margin-bottom:18px;
+  }
+  .project-card h4{ font-family:'Fraunces', serif; font-size:1.15rem; font-weight:600; margin:0 0 8px;}
+  .project-card h4 a{
+    color:var(--purple-700);
+    text-decoration:none;
+    border-bottom:1.5px solid var(--purple-300);
+    transition: color .2s ease, border-color .2s ease;
+  }
+  .project-card h4 a:hover{ color:var(--purple-500); border-color:var(--purple-500); }
+  .project-card p{ font-size:0.92rem; margin:0; }
+  .project-tag{
+    display:inline-block;
+    font-family:'Space Mono', monospace;
+    font-size:0.65rem;
+    background:var(--purple-100); color:var(--purple-700);
+    padding:3px 10px; border-radius:100px; margin-bottom:10px;
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact-wrap{
+    background: var(--purple-500);
+    border-radius:28px;
+    padding:64px 60px;
+    position:relative;
+    overflow:hidden;
+    text-align:center;
+  }
+  .contact-wrap::before{
+    content:''; position:absolute; inset:0;
+    background-image: radial-gradient(circle, rgba(255,255,255,0.14) 1.6px, transparent 1.6px);
+    background-size:24px 24px;
+  }
+  .contact-wrap h2{ color:#fff; font-size:2.4rem; position:relative; }
+  .contact-wrap p{ color:rgba(255,255,255,0.85); max-width:52ch; margin:14px auto 30px; position:relative; }
+  .contact-btns{ display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative;}
+  .contact-btns .btn.primary{ background:#fff; color:var(--purple-700); }
+  .contact-btns .btn.ghost{ border-color:rgba(255,255,255,0.6); color:#fff; }
+  .contact-btns .btn.ghost:hover{ background:rgba(255,255,255,0.12); }
+
+  footer{
+    text-align:center; padding:36px 0 50px;
+    font-family:'Space Mono', monospace;
+    font-size:0.75rem; color:var(--ink-soft);
+  }
+
+  @media (max-width: 920px){
+    .hero-grid{ grid-template-columns:1fr; }
+    .about-grid{ grid-template-columns:1fr; }
+    .work-grid{ grid-template-columns:1fr; }
+    .gallery, .gallery.three{ grid-template-columns:repeat(2,1fr); }
+    .skill-cols{ grid-template-columns:1fr; }
+    .nav .brand{ display:none; }
+    .hero-card{ padding:34px 26px; }
+    .hero-card h1{ font-size:2.5rem; }
+    .contact-wrap{ padding:48px 24px; }
+    .wrap{ padding:0 20px; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{ transition:none !important; scroll-behavior:auto !important; }
+  }
+</style>
+</head>
+<body>
+<div class="bg-dots"></div>
+
+<div class="nav-outer">
+  <nav class="nav">
+    <span class="brand">Alexis F.</span>
+    <a class="tab" href="#about">ABOUT</a>
+    <a class="tab" href="#skills">SKILLS</a>
+    <a class="tab" href="#work">WORK</a>
+    <a class="tab" href="#projects">PROJECTS</a>
+    <a class="tab" href="#contact">CONTACT</a>
+  </nav>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div class="hero-card">
+      <div class="pin"></div>
+      <span class="tape tl"></span>
+      <span class="eyebrow">Hi, I'm</span>
+      <h1>Alexis <em>Faustino</em></h1>
+      <div class="role-line">Virtual Admin · Recruiter · Creative Support — she/her</div>
+      <p class="lede">A Recruitment and Administrative Support Professional who helps remote teams hire smarter, run smoother, and look good doing it — from candidate pipelines to the Canva graphics that announce them.</p>
+      <div class="chip-row">
+        <span class="chip">Talent Sourcing</span>
+        <span class="chip peach">CRM &amp; Lead Gen</span>
+        <span class="chip blush">Canva Design</span>
+        <span class="chip mint">Project Coordination</span>
+      </div>
+      <div class="btn-row">
+        <a class="btn primary" href="#work">See my work experience</a>
+        <a class="btn ghost" href="#projects">View design projects</a>
+      </div>
+      <span class="tape br"></span>
+    </div>
+    <div class="hero-visual">
+      <div class="sticky-behind"></div>
+      <div class="sticky-behind two"></div>
+      <figure class="polaroid">
+        <img src="assets/alexis.webp" alt="Portrait of Alexis Faustino">
+        <figcaption>Alexis Faustino</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">About</span>
+      <h2>The person behind the pipeline</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-card-photo">
+        <div class="avatar-ring"><div class="init"><img src="assets/alexis.webp" alt="Portrait of Alexis Faustino"></div></div>
+        <div class="name">Alexis Faustino</div>
+        <div class="pronoun">(she/her)</div>
+        <div class="role">ADMIN ASSISTANT</div>
+        <div class="social-row">
+          <a href="mailto:acezfaustino@gmail.com" aria-label="Email">✉</a>
+          <a href="https://www.linkedin.com/in/alexisfaustino/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="about-card-bio">
+        <h3>About me</h3>
+        <p>I am a Recruitment and Administrative Support Professional with experience supporting remote teams in recruitment, talent sourcing, lead generation, customer support, and project coordination. Throughout my career, I have worked with US-based organizations, helping streamline hiring processes, manage candidate pipelines, conduct screenings, and support business development initiatives.</p>
+        <p>My background combines recruitment expertise with administrative and client-facing support, allowing me to adapt quickly to fast-paced environments while maintaining accuracy and professionalism. I am highly organized, dependable, and committed to delivering quality results through effective communication, attention to detail, and strong problem-solving skills.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Core Skills</span>
+      <h2>What I bring to the desk</h2>
+    </div>
+    <div class="skills-board">
+      <div class="skill-cols">
+        <div class="skill-tag"><span class="dot"></span>Talent Sourcing &amp; Recruitment</div>
+        <div class="skill-tag"><span class="dot"></span>Social Media Support</div>
+        <div class="skill-tag"><span class="dot"></span>Candidate Screening</div>
+        <div class="skill-tag"><span class="dot"></span>Project Coordination</div>
+        <div class="skill-tag"><span class="dot"></span>Administrative Support</div>
+        <div class="skill-tag"><span class="dot"></span>MS Office (Word, Excel, Outlook)</div>
+        <div class="skill-tag"><span class="dot"></span>Canva Editing</div>
+        <div class="skill-tag"><span class="dot"></span>Google Workspace</div>
+        <div class="skill-tag"><span class="dot"></span>CRM &amp; Lead Generation</div>
+        <div class="skill-tag"><span class="dot"></span>Data Entry &amp; Reporting</div>
+        <div class="skill-tag"><span class="dot"></span>B2B Outreach</div>
+        <div class="skill-tag"><span class="dot"></span>Game Chat Support &amp; QA Testing</div>
+        <div class="skill-tag"><span class="dot"></span>Client Communication</div>
+        <div class="skill-tag"><span class="dot"></span>Resume Editing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK EXPERIENCE -->
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Work Experience</span>
+      <h2>Pinned to the corkboard</h2>
+    </div>
+    <div class="work-grid">
+      <div class="work-card">
+        <div class="pushpin"></div>
+        <h3>Freelance Virtual Admin / Game Support</h3>
+        <p>Project coordination, community management, customer support, and social media administration — managing gaming events, responding to inquiries via chat and ticketing platforms, coordinating online operations, and creating engaging content for remote work environments.</p>
+      </div>
+      <div class="work-card">
+        <div class="pushpin"></div>
+        <h3>Recruiter / Talent Acquisition</h3>
+        <p>End-to-end recruitment for both U.S. and Philippine markets — candidate sourcing, screening, interview coordination, applicant tracking systems (ATS), offer management, and onboarding support across high-volume pipelines.</p>
+      </div>
+      <div class="work-card">
+        <div class="pushpin"></div>
+        <h3>Admin Support</h3>
+        <p>Customer service, technical support, and office administration — managing records, preparing reports, processing documentation, coordinating daily administrative tasks, and providing exceptional customer support.</p>
+      </div>
+      <div class="work-card">
+        <div class="pushpin"></div>
+        <h3>B2B Sales Admin</h3>
+        <p>Sales support, lead generation, CRM management, and client communication — preparing quotations and proposals, maintaining sales records, scheduling meetings, and supporting the end-to-end sales process.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Projects</span>
+      <h2>Design work from the scrapbook</h2>
+      <p class="proj-lead">A mix of recruitment collateral and community event design — proof that admin work and creative work aren't mutually exclusive.</p>
+    </div>
+
+    <div class="proj-block-title">Recruitment &amp; hiring graphics</div>
+    <div class="gallery three">
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/photo2.webp" alt="Pastel pixel-window hiring graphic for a CRM Functional Consultant role">
+        <figcaption>"We're Hiring" post — CRM Functional Consultant</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/ra2.webp" alt="Bold black and purple urgent hiring poster listing recruitment roles">
+        <figcaption>Urgent hiring poster — recruitment roles</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/photo1.webp" alt="Dark terminal-style hiring graphic for a Python Developer role">
+        <figcaption>"We're Hiring" post — Python Developer</figcaption>
+      </figure>
+    </div>
+
+    <div class="proj-block-title">Community event banners</div>
+    <div class="gallery">
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/yep.webp" alt="Year End Party banner with fireworks">
+        <figcaption>Year End Party</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/xmas.webp" alt="Christmas Mini Event banner">
+        <figcaption>Christmas Mini Event</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/halloween.webp" alt="Halloween Build Event banner">
+        <figcaption>Halloween Build Event</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/easter.webp" alt="Easter Build Event banner">
+        <figcaption>Easter Build Event</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/lny.webp" alt="Lunar New Year Build Event banner">
+        <figcaption>Lunar New Year Build Event</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/yearend1.webp" alt="Year End Sale glowing script banner">
+        <figcaption>Year End Sale — v1</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/yearend2.webp" alt="Year End Sale pixel-font glowing banner">
+        <figcaption>Year End Sale — v2</figcaption>
+      </figure>
+      <figure class="g-card">
+        <span class="mini-tape"></span>
+        <img src="assets/guardium.webp" alt="Guardium pixel-art game logo">
+        <figcaption>Guardium — game logo</figcaption>
+      </figure>
+    </div>
+
+    <div class="proj-block-title">Also on the desk</div>
+    <div class="project-card">
+      <span class="project-tag">Documentation</span>
+      <h4><a href="https://island-memories.gitbook.io/island-memories-wiki" target="_blank" rel="noopener">Island Memories Wiki ↗</a></h4>
+      <p>Designed and managed a structured 15-page wiki for a gaming community, covering server rules, guidelines, and operational documentation to enhance user onboarding and community engagement.</p>
+    </div>
+    <div class="project-card">
+      <span class="project-tag">Video</span>
+      <h4><a href="https://www.tiktok.com/@islandmemories_mc/video/7312109319317687560?_r=1&_t=ZS-97Q5SSzDuFe" target="_blank" rel="noopener">Promotional video campaigns ↗</a></h4>
+      <p>Designed and edited promotional video campaigns that contributed to community growth by increasing awareness, engagement, and interest in the gaming server.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-wrap">
+      <span class="eyebrow" style="color:#fff;">Let's connect</span>
+      <h2>Got a role or a project in mind?</h2>
+      <p>I'm always glad to talk recruitment pipelines, admin support, or the next event banner. Drop me a line — I'll get back to you quickly.</p>
+      <div class="contact-btns">
+        <a class="btn primary" href="mailto:acezfaustino@gmail.com">✉ Email me</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/alexisfaustino/" target="_blank" rel="noopener">in Connect on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>ALEXIS FAUSTINO — VIRTUAL ADMIN &amp; RECRUITMENT PORTFOLIO</footer>
+
+<script>
+  document.querySelectorAll('.nav a.tab').forEach(a=>{
+    a.addEventListener('click', ()=>{
+      document.querySelectorAll('.nav a.tab').forEach(x=>x.style.background='');
+    });
+  });
+</script>
+</body>
+</html>
